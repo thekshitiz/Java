@@ -1,9 +1,13 @@
 public class Airplane {
     // fields (state)
 
-    int id;
+    private int id;
+    private boolean hasLanded;
 
-    boolean hasLanded;
+    // constructor
+    public Airplane(int planeId){
+        id = planeId;
+    }
 
     // Methods (behaviour)
 
@@ -14,5 +18,9 @@ public class Airplane {
     void takeOff() {
         System.out.println("Plane " + id + " is taking off.");
         hasLanded = false;
+    }
+
+    void printDetails(){
+        System.out.println("The plane " + id + " has landed: " + hasLanded);
     }
 }
