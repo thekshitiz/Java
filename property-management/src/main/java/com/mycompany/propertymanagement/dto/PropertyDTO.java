@@ -6,15 +6,15 @@ import lombok.Setter;
 @Getter
 @Setter
 public class PropertyDTO {
-// to access these private class we need to set getters and setters
+    // to access these private class we need to set getters and setters
     private String title;
     private String description;
     private String ownerName;
     private String ownerEmail;
     private String price;
     private String address;
-
-//    public String getTitle() {
+}
+/*  public String getTitle() {
 //        return title;
 //    }
 //
@@ -62,3 +62,4 @@ public class PropertyDTO {
 //        this.address = address;
 //    }
 }
+*/
