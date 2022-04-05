@@ -2,7 +2,10 @@ package com.mycompany.propertymanagement.controller;
 
 import com.mycompany.propertymanagement.dto.PropertyDTO;
 import com.mycompany.propertymanagement.service.PropertyService;
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 /* access or receive request based on  url
@@ -23,8 +26,8 @@ public class PropertyController {
 
     // adding an endpoint for adding property
     @PostMapping("/properties")
-    public PropertyDTO saveProperty(@RequestBody PropertyDTO propertyDTO) {
-        System.out.println(propertyDTO);
-        return propertyDTO;
+    public ResponseEntity<PropertyDTO> saveProperty(@RequestBody PropertyDTO propertyDTO) {
+        ResponseEntity<PropertyDTO> responseEntity = new ResponseEntity<>(propertyDTO, HttpStatus.CREATED);
+        return responseEntity;
     }
 }

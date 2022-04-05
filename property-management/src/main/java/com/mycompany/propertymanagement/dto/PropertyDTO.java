@@ -7,6 +7,7 @@ import lombok.Setter;
 @Setter
 public class PropertyDTO {
     // to access these private class we need to set getters and setters
+    private long id;
     private String title;
     private String description;
     private String ownerName;
