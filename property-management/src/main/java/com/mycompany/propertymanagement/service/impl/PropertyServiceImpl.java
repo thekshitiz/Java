@@ -8,6 +8,10 @@ import com.mycompany.propertymanagement.service.PropertyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
 @Service
 // service annotation makes PropertyServiceImpl object as singleton instance
 // next time when request is made for this object, same created object is returned making it memory efficient
@@ -16,17 +20,51 @@ public class PropertyServiceImpl implements PropertyService {
     private PropertyRepository propertyRepository;
     @Autowired
     private PropertyConverter propertyConverter;
+    private PropertyDTO dto;
 
     @Override
 
 // convert propertyDTO to property entity
     public PropertyDTO saveProperty(PropertyDTO propertyDTO) {
-PropertyEntity pe = propertyConverter.convertDTOtoEntity(propertyDTO);
-       pe = propertyRepository.save(pe);
+        PropertyEntity pe = propertyConverter.convertDTOtoEntity(propertyDTO);
+        pe = propertyRepository.save(pe);
 
-       propertyDTO = propertyConverter.convertEntityToDTO(pe);
+        propertyDTO = propertyConverter.convertEntityToDTO(pe);
 
         return propertyDTO;
         // use of abstract pattern converting dto to entity
+    }
+
+    @Override
+    public List<PropertyDTO> getAllProperties() {
+        List<PropertyEntity> listofProps = (List<PropertyEntity>) propertyRepository.findAll();
+        List<PropertyDTO> propList = new ArrayList<>();
+        for (PropertyEntity pe : listofProps) {
+            PropertyDTO dto = propertyConverter.convertEntityToDTO(pe);
+            propList.add(dto);
+        }
+        return propList;
+    }
+
+    @Override
+    public PropertyDTO updateProperty(PropertyDTO propertyDTO, Long propertyId) {
+
+        // fetch column by find by id
+        Optional<PropertyEntity> optEn = propertyRepository.findById(propertyId);
+        PropertyDTO dto = null;
+        if (optEn.isPresent()) {
+            PropertyEntity pe = optEn.get(); // data from database
+//            PropertyEntity pe = new PropertyEntity();
+            pe.setTitle(propertyDTO.getTitle());
+            pe.setAddress(propertyDTO.getAddress());
+            pe.setOwnerEmail(propertyDTO.getOwnerEmail());
+            pe.setOwnerName(propertyDTO.getOwnerName());
+            pe.setPrice(propertyDTO.getPrice());
+            pe.setDescription(propertyDTO.getDescription());
+    dto = propertyConverter.convertEntityToDTO(pe);
+        propertyRepository.save(pe);
+        }
+
+        return dto;
     }
 }
