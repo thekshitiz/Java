@@ -9,10 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.data.repository.CrudRepository;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-
 @Service
 // service annotation makes PropertyServiceImpl object as singleton instance
 // next time when request is made for this object, same created object is returned making it memory efficient
@@ -20,19 +16,19 @@ public class PropertyServiceImpl implements PropertyService {
     @Autowired
     private PropertyRepository propertyRepository;
     private PropertyConverter propertyConverter;
-    private PropertyDTO dto;
 
     @Override
 // convert propertyDTO to property entity
     public PropertyDTO saveProperty(PropertyDTO propertyDTO) {
-        PropertyEntity pe = propertyConverter.convertDTOtoEntity(propertyDTO);
-        pe = propertyRepository.save(pe);
+PropertyEntity pe = propertyConverter.convertDTOtoEntity(propertyDTO);
+       pe = propertyRepository.save(pe);
 
-        propertyDTO = propertyConverter.convertEntityToDTO(pe);
+       propertyDTO = propertyConverter.convertEntityToDTO(pe);
 
         return propertyDTO;
         // use of abstract pattern converting dto to entity
     }
+<<<<<<< HEAD
 
     @Override
     public List<PropertyDTO> getAllProperties() {
@@ -97,4 +93,6 @@ public class PropertyServiceImpl implements PropertyService {
 
         return dto;
     }
+=======
+>>>>>>> parent of 7e937cc (wednesday practice)
 }

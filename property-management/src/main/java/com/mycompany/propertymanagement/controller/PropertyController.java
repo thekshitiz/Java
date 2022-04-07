@@ -7,8 +7,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 /* access or receive request based on  url
  request mapping can be ignored and /hello can be ignored */
 
@@ -31,6 +29,7 @@ public class PropertyController {
         ResponseEntity<PropertyDTO> responseEntity = new ResponseEntity<>(propertyDTO, HttpStatus.CREATED);
         return responseEntity;
     }
+<<<<<<< HEAD
 
     @GetMapping("/properties")
     public ResponseEntity<List<PropertyDTO>> getAllProperties() {
@@ -61,4 +60,6 @@ public class PropertyController {
         ResponseEntity<PropertyDTO> responseEntity = new ResponseEntity<>(propertyDTO, HttpStatus.OK);
         return responseEntity;
     }
+=======
+>>>>>>> parent of 7e937cc (wednesday practice)
 }
