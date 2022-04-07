@@ -3,11 +3,13 @@ package com.mycompany.propertymanagement.dto;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.math.BigInteger;
+
 @Getter
 @Setter
 public class PropertyDTO {
     // to access these private class we need to set getters and setters
-    private long id;
+    private Long id;
     private String title;
     private String description;
     private String ownerName;

@@ -1,18 +1,22 @@
 package com.mycompany.propertymanagement.entity;
 
+import javax.persistence.*;
+import javax.persistence.Id;
+
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.*;
+import java.math.BigInteger;
 
-@Entity
-@Table(name = "PROPERTY_TABLE")
 @Getter
 @Setter
-@Data
+@Entity
+@Table(name = "PROPERTY_TABLE")
+
 @NoArgsConstructor
+
 public class PropertyEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO) // to generate auto increment value for id
